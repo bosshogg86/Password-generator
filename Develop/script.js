@@ -2,11 +2,10 @@
 var generateBtn = document.querySelector("#generate");
 
 // My Variables
-
-var lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var numeric = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-var special = ["~`!#$%^&*+=-[]\\\';,/{}|\":<>?"];
+var lowercase = ["abcdefghijklmnopqrstuvwxyz"];
+var uppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+var numeric = [0123456789];
+var special = ["~`!#$%^&*+=-[]\\\',;/{}|\":<>?"];
 var confirmLower = promptMe.confirmLower;
 var confirmUpper = promptMe.confirmUpper;
 var confirmNumeric = promptMe.confirmNumeric;
@@ -18,9 +17,7 @@ var characters;
 function writePassword() {
   var password = generatePassword(); 
   var passwordText = document.querySelector("#password");
-  
   passwordText.value = password;
-
 }
 
 
