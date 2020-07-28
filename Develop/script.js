@@ -27,31 +27,37 @@ generateBtn.addEventListener("click", writePassword);
 
 // My Prompts/confirms
 function promptMe() {
-  passwordLength = prompt("Choose your password length, between 8 and 128 characters");
-  //   if (passwordLength < 8 || passwordLength > 128) {
-  //   alert("Please enter a number between 8 and 128");
-  //   } 
-  // }
+  passwordLength = prompt("Choose your password length, between 8 and 128 characters") 
+    while (passwordLength < 8 || passwordLength > 128) {
+      alert("Choose a number between 8 and 128")
+      passwordLength = prompt("Choose your password length, between 8 and 128 characters")
+    }
   confirmLower = confirm("Do you want lowercase letters?");
   confirmUpper = confirm("Do you want UPPERCASE letters?");
   confirmNumeric = confirm("Do you want numbers?"); 
-  confirmSpecial = confirm("Do you want special characters?");  
+  confirmSpecial = confirm("Do you want special characters?");
+    while (!confirmLower && !confirmUpper && !confirmNumeric && !confirmSpecial) {
+      alert("You must select at least one character type!");
+      confirmLower = confirm("Do you want lowercase letters?");
+      confirmUpper = confirm("Do you want UPPERCASE letters?");
+      confirmNumeric = confirm("Do you want numbers?"); 
+      confirmSpecial = confirm("Do you want special characters?");
+    }  
 }
 
 // My Function
 function generatePassword() {
-  if (confirmLower === true) {
+  if (confirmLower) {
     characters += lowercase;
   } 
-  if (confirmUpper === true) {
+  else if (confirmUpper) {
     characters += uppercase;
   } 
-  if (confirmNumeric === true) {
+  else if (confirmNumeric) {
     characters += numeric;
   } 
-  if (confirmSpecial === true) {
+  else if (confirmSpecial) {
     characters += special;
-    console.log(characters);
   } 
   let password = "";
   for (let i = 0; i < passwordLength; i++) {
