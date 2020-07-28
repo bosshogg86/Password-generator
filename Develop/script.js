@@ -6,12 +6,8 @@ const lowercase = ["abcdefghijklmnopqrstuvwxyz"];
 const uppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 const numeric = [0123456789];
 const special = ["~`!#$%^&*+=-[]\\\',;/{}|\":<>?"];
-let confirmLower = promptMe.confirmLower;
-let confirmUpper = promptMe.confirmUpper;
-let confirmNumeric = promptMe.confirmNumeric;
-let confirmSpecial = promptMe.confirmSpecial;
-let passwordLength = parseInt(promptMe.passwordLength);
-let characters;
+let characters = "";
+let password = "";
 
 // Write password to the #password input
 function writePassword() {
@@ -25,12 +21,12 @@ function writePassword() {
 generateBtn.addEventListener("click", promptMe);
 generateBtn.addEventListener("click", writePassword);
 
-// My Prompts/confirms
+// Prompts/confirms
 function promptMe() {
-  passwordLength = prompt("Choose your password length, between 8 and 128 characters") 
+  passwordLength = parseInt(prompt("Choose your password length, between 8 and 128 characters")) 
     while (passwordLength < 8 || passwordLength > 128) {
       alert("Choose a number between 8 and 128")
-      passwordLength = prompt("Choose your password length, between 8 and 128 characters")
+      passwordLength = parseInt(prompt("Choose your password length, between 8 and 128 characters"))
     }
   confirmLower = confirm("Do you want lowercase letters?");
   confirmUpper = confirm("Do you want UPPERCASE letters?");
@@ -45,24 +41,22 @@ function promptMe() {
     }  
 }
 
-// My Function
+// Function to create allowed characters
 function generatePassword() {
   if (confirmLower) {
     characters += lowercase;
-  } 
-  else if (confirmUpper) {
+  } if (confirmUpper) {
     characters += uppercase;
-  } 
-  else if (confirmNumeric) {
+  } if (confirmNumeric) {
     characters += numeric;
-  } 
-  else if (confirmSpecial) {
+  } if (confirmSpecial) {
     characters += special;
   } 
-  let password = "";
-  for (let i = 0; i < passwordLength; i++) {
-  let random = Math.floor(Math.random() * characters.length);
-  password += characters[random];
+
+// Generates random string
+  for (let i = 0;  i < passwordLength; i++) {
+    password +=  characters[Math.floor(Math.random() * characters.length)];
   }
   return password;
-}
+} 
+
