@@ -26,7 +26,7 @@ function promptMe() {
     prompt("Choose your password length, between 8 and 128 characters")
   );
   while (!passwordLength || passwordLength < 8 || passwordLength > 128) {
-    alert("Choose a number between 8 and 128");
+    alert("Choose a number between 8 and 128!");
     passwordLength = parseInt(
       prompt("Choose your password length, between 8 and 128 characters")
     );
