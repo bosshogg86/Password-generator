@@ -20,7 +20,7 @@ function writePassword() {
 generateBtn.addEventListener("click", promptMe);
 generateBtn.addEventListener("click", writePassword);
 
-// Prompts/confirms for character types
+// Prompts/confirms for character types and length
 function promptMe() {
   passwordLength = parseInt(
     prompt("Choose your password length, between 8 and 128 characters")
@@ -44,7 +44,7 @@ function promptMe() {
   }
 }
 
-// Function to create allowed characters
+// Concatenate user's characters to string
 function generatePassword() {
   let characters = "";
   if (confirmLower) {
@@ -59,11 +59,23 @@ function generatePassword() {
   if (confirmSpecial) {
     characters += special;
   }
+  
+  // Generates random password string
   let password = "";
-
-  // Generates random string
   for (let i = 0; i < passwordLength; i++) {
     password += characters[Math.floor(Math.random() * characters.length)];
   }
   return password;
 }
+
+// switch (true) {
+//   case confirmLower:
+//     characters += lowercase;
+//   case confirmUpper:
+//     characters += uppercase;
+//   case confirmNumeric:
+//     characters += numeric;
+//   case confirmSpecial: 
+//     characters += special;
+//        break;
+// }
