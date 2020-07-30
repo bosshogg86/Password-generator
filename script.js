@@ -16,7 +16,7 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Added event listeners to generate button
+// Event listeners on generate button
 generateBtn.addEventListener("click", promptMe);
 generateBtn.addEventListener("click", writePassword);
 
@@ -25,11 +25,8 @@ function promptMe() {
   passwordLength = parseInt(
     prompt("Choose your password length, between 8 and 128 characters")
   );
-  // if (passwordLength === null) {
-  //  return;
-  // }
   while (!passwordLength || passwordLength < 8 || passwordLength > 128) {
-    alert("Choose a number between 8 and 128!");
+    alert("You must choose a number between 8 and 128!");
     passwordLength = parseInt(
       prompt("Choose your password length, between 8 and 128 characters")
     );
@@ -47,7 +44,7 @@ function promptMe() {
   }
 }
 
-// Concatenate user's characters to string
+// Concatenate user's selected characters to string
 function generatePassword() {
   let characters = "";
   if (confirmLower) {
@@ -63,7 +60,7 @@ function generatePassword() {
     characters += special;
   }
 
-  // Generates random password string
+  // Generates random password from users string
   let password = "";
   for (let i = 0; i < passwordLength; i++) {
     password += characters[Math.floor(Math.random() * characters.length)];
