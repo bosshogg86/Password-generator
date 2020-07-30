@@ -2,12 +2,16 @@
 let generateBtn = document.querySelector("#generate");
 
 // My Variables
-const lowercase = ["abcdefghijklmnopqrstuvwxyz"];
-const uppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-const numeric = [0123456789];
-const special = ["~`!#$%^&*+=-[]\\',;/{}|\":<>?"];
+const lowercase = "abcdefghijklmnopqrstuvwxyz";
+const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const numeric = "0123456789";
+const special = "~`!#$%^&*+=-[]\\',;/{}|\":<>?";
 let characters = "";
 let password = "";
+let confirmLower;
+let confirmUpper;
+let confirmNumeric;
+let confirmSpecial;
 
 // Write password to the #password input
 function writePassword() {
@@ -16,36 +20,29 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Event listeners on generate button
-generateBtn.addEventListener("click", promptMe);
-generateBtn.addEventListener("click", writePassword);
-
-// Prompts/confirms for character types and length
-function promptMe() {
-  passwordLength = parseInt(
-    prompt("Choose your password length, between 8 and 128 characters")
-  );
-  while (!passwordLength || passwordLength < 8 || passwordLength > 128) {
-    alert("You must choose a number between 8 and 128!");
-    passwordLength = parseInt(
-      prompt("Choose your password length, between 8 and 128 characters")
-    );
-  }
-  confirmLower = confirm("Do you want lowercase letters?");
-  confirmUpper = confirm("Do you want UPPERCASE letters?");
-  confirmNumeric = confirm("Do you want numbers?");
-  confirmSpecial = confirm("Do you want special characters?");
-  while (!confirmLower && !confirmUpper && !confirmNumeric && !confirmSpecial) {
-    alert("You must select at least one character type!");
+// Concatenate user's selected characters to string
+function generatePassword() {
+  passwordLength = prompt("Choose your password length, between 8 and 128 characters");
+  console.log(passwordLength !== null);
+  if (passwordLength !== null) {
+    while (!passwordLength || passwordLength < 8 || passwordLength > 128) {
+      alert("You must choose a number between 8 and 128!");
+      passwordLength = parseInt(
+        prompt("Choose your password length, between 8 and 128 characters")
+      );
+    }
     confirmLower = confirm("Do you want lowercase letters?");
     confirmUpper = confirm("Do you want UPPERCASE letters?");
     confirmNumeric = confirm("Do you want numbers?");
     confirmSpecial = confirm("Do you want special characters?");
+    while (!confirmLower && !confirmUpper && !confirmNumeric && !confirmSpecial) {
+      alert("You must select at least one character type!");
+      confirmLower = confirm("Do you want lowercase letters?");
+      confirmUpper = confirm("Do you want UPPERCASE letters?");
+      confirmNumeric = confirm("Do you want numbers?");
+      confirmSpecial = confirm("Do you want special characters?");
+    }
   }
-}
-
-// Concatenate user's selected characters to string
-function generatePassword() {
   let characters = "";
   if (confirmLower) {
     characters += lowercase;
@@ -68,14 +65,5 @@ function generatePassword() {
   return password;
 }
 
-// switch () {
-//   case confirmLower:
-//     characters += lowercase;
-//   case confirmUpper:
-//     characters += uppercase;
-//   case confirmNumeric:
-//     characters += numeric;
-//   case confirmSpecial: 
-//     characters += special;
-//        break;
-// }
+// Event listeners on generate button
+generateBtn.addEventListener("click", writePassword);
