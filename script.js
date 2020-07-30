@@ -1,5 +1,5 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+let generateBtn = document.querySelector("#generate");
 
 // My Variables
 const lowercase = ["abcdefghijklmnopqrstuvwxyz"];
@@ -25,6 +25,9 @@ function promptMe() {
   passwordLength = parseInt(
     prompt("Choose your password length, between 8 and 128 characters")
   );
+  // if (passwordLength === null) {
+  //  return;
+  // }
   while (!passwordLength || passwordLength < 8 || passwordLength > 128) {
     alert("Choose a number between 8 and 128!");
     passwordLength = parseInt(
@@ -49,7 +52,7 @@ function generatePassword() {
   let characters = "";
   if (confirmLower) {
     characters += lowercase;
-  }
+  } 
   if (confirmUpper) {
     characters += uppercase;
   }
@@ -59,7 +62,7 @@ function generatePassword() {
   if (confirmSpecial) {
     characters += special;
   }
-  
+
   // Generates random password string
   let password = "";
   for (let i = 0; i < passwordLength; i++) {
@@ -68,7 +71,7 @@ function generatePassword() {
   return password;
 }
 
-// switch (true) {
+// switch () {
 //   case confirmLower:
 //     characters += lowercase;
 //   case confirmUpper:
